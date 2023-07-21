@@ -12,6 +12,22 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <% if customer_signed_in? %>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="d-flex">
+              <div class="p-2 flex-grow-1"><%= link_to "Logo", root_path %></div>
+              <div class="p-2">Flex item</div>
+              <div class="p-2">Third flex item</div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+      <% end %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
