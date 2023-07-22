@@ -16,10 +16,31 @@
       <% if customer_signed_in? %>
         <div class="container-fluid">
           <div class="row">
-            <div class="d-flex">
-              <div class="p-2 flex-grow-1"><%= link_to "Logo", root_path %></div>
-              <div class="p-2">Flex item</div>
-              <div class="p-2">Third flex item</div>
+            <div class="col mt-5">
+            <ul class="nav">
+              <li class="nav-item">
+                <h2>
+                  <%= link_to "Logo", root_path, style: "text-decoration: none;", style: "color:black;" %>
+                </h2>
+              </li>
+            </ul>
+            </div>
+
+            <div class="col mt-2">
+            <ul class="nav justify-content-end">
+              <li class="nav-item">
+
+              </li>
+              <li class="nav-item">
+                 <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
             </div>
           </div>
         </div>
