@@ -1,52 +1,92 @@
-<h2>Sign up</h2>
+<%= form_with model: @customer, url: customer_registration_path do |f| %>
+<%= render "public/shared/error_messages", resource: resource %>
 
-  <%= form_with model: @customer, url: customer_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+  <h4 class="p-3 mb-2">
+    <span class="bg-body-secondary"><b>&nbsp;&nbsp;&nbsp;新規会員登録&nbsp;&nbsp;&nbsp;</b></span>
+  </h4>
 
-  <div class="field">名前
-      <%= f.label :first_name, "(姓)" %>
-      <%= f.text_field :first_name %>
-      <%= f.label :last_name, "(名)" %>
-      <%= f.text_field :last_name %>
+  <div class="mb-3 row">
+    <label class="col-2 col-form-label">名前</label>
+    <div class="col-sm-6">
+      <div class="d-flex">
+        <div>(姓)
+          <%= f.text_field :first_name, class: "form-control", placeholder: "令和" %>
+        </div>
+        <div class="col-4">(名)
+          <%= f.text_field :last_name, class: "form-control", placeholder: "道子" %>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="field">フリガナ
-      <%= f.label :first_name_kana, "(セイ)" %>
-      <%= f.text_field :first_name_kana %>
-      <%= f.label :last_name_kana, "(メイ)" %>
-      <%= f.text_field :last_name_kana %>
+  <div class="mb-3 row">
+    <label class="col-2 col-form-label">フリガナ</label>
+    <div class="col-sm-6">
+      <div class="d-flex">
+        <div>(セイ)
+          <%= f.text_field :first_name_kana, class: "form-control", placeholder: "レイワ" %>
+        </div>
+        <div class="col-4">(メイ)
+          <%= f.text_field :last_name_kana, class: "form-control", placeholder: "ミチコ" %>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="field">メールアドレス
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="mb-3 row">
+    <label class="col-2 col-form-label">Email</label>
+    <div class="col-sm-4">
+      <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
+    </div>
   </div>
 
-  <div class="field">郵便番号
-    <%= f.text_field :postal_code %>
+   <div class="mb-3 row">
+    <label class="col-2 col-form-label">郵便番号</label>
+    <div class="col-sm-4">
+      <%= f.text_field :postal_code, class: "form-control", placeholder: "0000000" %>
+    </div>
   </div>
 
-  <div class="field">住所
-    <%= f.text_area :address %>
+  <div class="mb-3 row">
+    <label class="col-2 col-form-label">住所</label>
+    <div class="col-sm-8">
+      <%= f.text_area :address, class: "form-control", placeholder: "東京都渋谷区代々木神園町0-0" %>
+    </div>
   </div>
 
-  <div class="field">電話番号(ハイフンなし)
-    <%= f.text_field :telephone_number %>
+  <div class="mb-3 row">
+    <label class="col-2 col-form-label">電話番号(ハイフンなし)</label>
+    <div class="col-sm-4">
+      <%= f.text_field :telephone_numbe, class: "form-control", placeholder: "0000000000" %>
+    </div>
   </div>
 
 
-  <div class="field">パスワード(6文字以上)
-    <% if @minimum_password_length %>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="mb-3 row">
+    <label class="col-2 col-form-label">パスワード(6文字以上)</label>
+    <div class="col-sm-4">
+      <% if @minimum_password_length %>
+      <% end %>
+      <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
+    </div>
   </div>
 
-  <div class="field">パスワード(確認用)
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="mb-3 row">
+    <label class="col-2 col-form-label">パスワード(確認用)</label>
+    <div class="col-sm-4">
+      <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="mb-3 row">
+    <div class="col-7 text-center">
+      <%= f.submit "新規登録", class: "btn btn-success btn-lg col-sm-5" %>
+    </div>
   </div>
+
 <% end %>
 
-<%= render "public/shared/links" %>
+  <h4 class="p-3 mb-2 text-center col-3">
+    <span class="bg-body-secondary"><b>&nbsp;&nbsp;&nbsp;既に登録済みの方&nbsp;&nbsp;&nbsp;</b></span>
+  </h4>
+  <h6 class="text-center col-4"><%= link_to "こちら", new_customer_session_path %>からログインしてください</h6>
