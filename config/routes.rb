@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'deliveries/index'
+    get 'deliveries/edit'
+  end
   root to: 'public/homes#top'
   get 'about' => 'public/homes#about', as: "about"
 
@@ -12,9 +16,17 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    resources :items
-    resources :customers
-    resources :cart_items
+    get '/customers/show' => 'customers#show', as: "customer"
+    get '/customers/information/edit' => 'customers#edit', as: "edit_customer"
+    get '/customers/update' => 'customers#update', as: "update_customer"
+    get '/customers/confirm' => 'customers#confirm', as: "confirm_customer"
+    get '/customers/withdraw' => 'customers#withdraw', as: "withdraw_customer"
+
+    resources :items, only: [:index, :show]
+
+    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+
+    resources :deliveries, only: [:create, :update, :destroy, :edit, :index]
   end
 
   get 'admin' => 'admin/homes#top',as: "admin_top"
