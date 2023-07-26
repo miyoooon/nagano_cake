@@ -1,4 +1,4 @@
-<%= form_with model: @customer do |f| %>
+<%= form_with model: @customer,url: customer_registration_path, method: :post do |f| %>
 <%= render "public/shared/error_messages", resource: resource %>
 
   <h4 class="p-3 mb-2">
