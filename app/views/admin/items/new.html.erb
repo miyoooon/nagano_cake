@@ -1,0 +1,48 @@
+<h4 class="p-3 mb-2">
+  <span class="bg-body-secondary"><b>&nbsp;&nbsp;&nbsp;ログイン&nbsp;&nbsp;&nbsp;</b></span>
+</h4>
+
+<%= form_with model: @item, url: admin_items_path, method: :post, local: true do |f| %>
+  <div class="container text-center mb-3">
+    <div class="row">
+    <label class="col-sm-3 col-form-label">商品画像</label>
+      <div class="col-sm-7">
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="container text-center mb-3">
+    <div class="row">
+    <label class="col-sm-3 col-form-label">商品名</label>
+      <div class="col-sm-7">
+        <%= f.text_field :name, class: "form-control", placeholder: "商品名" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="container text-center mb-3">
+    <div class="row">
+    <label class="col-sm-3 col-form-label">商品説明</label>
+      <div class="col-sm-7">
+        <%= f.text_area :introduction, class: "form-control", placeholder: "ここに説明文を記述します" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="container text-center mb-3">
+    <div class="row">
+    <label class="col-sm-3 col-form-label">税抜価格</label>
+      <div class="col-sm-7 d-flex flex-row">
+        <%= f.text_field :price, class: "form-control", placeholder: "1000" %><span>円</span>
+　　　</div>
+      </div>
+    </div>
+
+  <div class="mb-3 ms-5 my-5 row">
+    <div class="text-center">
+        <%= f.submit "新規登録", class: "btn btn-success btn col-sm-1" %>
+    </div>
+  </div>
+
+<% end %>
