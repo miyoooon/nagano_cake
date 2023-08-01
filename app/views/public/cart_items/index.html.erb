@@ -1,2 +1,61 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="row">
+  <div class="col-8">
+    <h4 class="p-3 mb-2 mt-5 ms-5 col">
+      <span class="bg-body-secondary"><b>&nbsp;&nbsp;&nbsp;ショッピングカート&nbsp;&nbsp;&nbsp;</b></span>
+    </h4>
+  </div>
+  <div class="col mt-5">
+    <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "btn btn-danger" %>
+  </div>
+</div>
+
+<div class="row col-8 mx-auto">
+  <table class="table table-bordered" >
+  <thead>
+    <tr class="table-active">
+      <th class="col-2">商品名</th>
+      <th class="col-1">単価(税込)</th>
+      <th class="col-1">数量</th>
+      <th class="col-1">小計</th>
+      <th class="col-1">&nbsp;&nbsp;&nbsp;</th>
+    </tr>
+  </thead>
+  <% @cart_items.each do |cart_item| %>
+  <tbody>
+    <tr>
+      <th class="col-2"><span><%= image_tag cart_item.item.image, size: "50x50" %></span><span><%= cart_item.item.name %></span></th>
+      <td><%= (cart_item.item.price*1.08).to_i %></td>
+      <td><%= form_with model: cart_item,url: cart_item_update_path(cart_item.id), local: true do |f| %>
+            <%= f.select :amount, *[0..30] %>
+            <%= f.submit '変更' %>
+          <% end %>
+      </td>
+      <td><%= (cart_item.item.price*1.08*cart_item.amount).to_i %></td>
+      <td>
+        <%= link_to "削除する", cart_items_destroy_path(cart_item), method: :delete, class: "btn btn-danger" %>
+      </td>
+    </tr>
+  </tbody>
+  <% end %>
+  </table>
+
+  <div class="row">
+    <div class="col-md-4">
+      <%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %>
+    </div>
+    <div class="col-md-4 offset-md-4">
+      <table class="table table-bordered col-12">
+        <tr>
+          <th class="col-6 table-active">合計金額</th>
+          <th class="col-6"><%= @cart_items.sum { |cart_item| (cart_item.item.price*1.08*cart_item.amount).to_i } %></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="mx-auto text-center">
+    <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success" %>
+  </div>
+</div>

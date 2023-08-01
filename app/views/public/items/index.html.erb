@@ -14,8 +14,8 @@
         <div class="row col-12 ms-3">
           <%= item.name %>
         </div>
-        <div class="row col-12 ms-3">
-          <%= (item.price*1.08).to_i %>
+        <div class="row col-12 ms-1">
+          <span>￥<%= (item.price*1.08).to_i %></span>
         </div>
       </div>
     <% end %>

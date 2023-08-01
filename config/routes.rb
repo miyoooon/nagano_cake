@@ -6,10 +6,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
   end
 
-  namespace :public do
-    get 'deliveries/index'
-    get 'deliveries/edit'
-  end
   root to: 'public/homes#top'
   get 'about' => 'public/homes#about', as: "about"
 
@@ -30,9 +26,19 @@ Rails.application.routes.draw do
 
     resources :items, only: [:index, :show]
 
-    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+    get '/cart_items' => 'cart_items#index', as: "cart_items"
+    patch '/cart_items/:id' => 'cart_items#update', as: "cart_item_update"
+    delete '/cart_items/:id' => 'cart_items#destroy', as: "cart_items_destroy"
+    delete '/cart_items/destroy_all' => 'cart_items#destroy_all', as: "cart_items_destroy_all"
+    post '/cart_items/' => 'cart_items#create', as: "cart_items_create"
 
     resources :deliveries, only: [:create, :update, :destroy, :edit, :index]
+
+    get 'deliveries/index'
+    get 'deliveries/edit'
+
+    resources :orders, only: [:new, :create, :complete, :confirm, :index, :show]
+
   end
 
   get 'admin' => 'admin/homes#top',as: "admin_top"
