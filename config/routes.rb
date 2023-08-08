@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get '/customers/show' => 'customers#show', as: "customer"
     get '/customers/information/edit' => 'customers#edit', as: "edit_customer"
     patch '/customers/update' => 'customers#update', as: "update_customer"
-    get '/customers/confirm' => 'customers#confirm', as: "confirm_customer"
+    post '/customers/confirm' => 'customers#confirm', as: "confirm_customer"
     patch '/customers/withdraw' => 'customers#withdraw', as: "withdraw_customer"
 
     resources :items, only: [:index, :show]
@@ -37,7 +37,12 @@ Rails.application.routes.draw do
     get 'deliveries/index'
     get 'deliveries/edit'
 
-    resources :orders, only: [:new, :create, :complete, :confirm, :index, :show]
+    get	'/orders/new' => 'orders#new'
+    post '/orders/confirm' => 'orders#confirm', as: "confirm_orders"
+    get '/orders/complete' => 'orders#complete', as: "complete_orders"
+    post '/orders' => 'orders#create', as: "create_orders"
+    get '/orders' => 'orders#index', as: "orders"
+    get '/orders/:id' => 'orders#show', as: "order"
 
   end
 

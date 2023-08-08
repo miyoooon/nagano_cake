@@ -1,2 +1,81 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h4 class="p-3 mb-2 mt-5 ms-5 col">
+        <span class="bg-body-secondary"><b>&nbsp;&nbsp;&nbsp;注文情報入力&nbsp;&nbsp;&nbsp;</b></span>
+      </h4>
+    </div>
+  </div>
+
+　<%= form_with model: @order, url: confirm_orders_path, method: :post do |f| %>
+  <div class="row">
+    <div class="col-4">
+      <h5><b>支払方法</b></h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <%= f.radio_button :payment_status, "クレジットカード" %>
+      <%= f.label :payment_status, "クレジットカード" %>
+      <%= f.radio_button :payment_status, "銀行振込" %>
+      <%= f.label :payment_status, "銀行振込" %>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-3">
+      <h5><b>お届け先</b></h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <label class="fz16"><%= radio_button_tag :address_number, 0, :checked => true %>ご自身の住所</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <%= current_customer.postal_code %>
+      <%= current_customer.address %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <%= current_customer.first_name %>
+      <%= current_customer.last_name %>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-3">
+      <label class="fz16"><%= radio_button_tag "address_number", 1 %>新しいお届け先</label>
+      <%#= f.radio_button :address_number, 1 %>
+      <%#= f.label :address, "新しいお届け先" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h6 class="d-inline me-4">郵便番号(ハイフンなし)</h6>
+      <span><%= f.text_field :postal_code, placeholder: "0000000" %></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h6 class="d-inline me-5 pr-5">住所</h6>
+      <span class="ms-5 pl-3"><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h6 class="d-inline me-5 pr-5">宛名</h6>
+      <span class="ms-5 pl-3"><%= f.text_field :name, placeholder: "令和道子" %></span>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-2 mx-auto">
+      <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+    </div>
+  </div>
+
+
+  <% end %>
+</div>
