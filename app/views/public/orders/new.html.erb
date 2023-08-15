@@ -29,7 +29,7 @@
   </div>
   <div class="row">
     <div class="col-3">
-      <label class="fz16"><%= radio_button_tag :address_number, 0, :checked => true %>ご自身の住所</label>
+      <%= f.radio_button :address_number, 0, :checked => true %>ご自身の住所
     </div>
   </div>
   <div class="row">
@@ -46,7 +46,7 @@
   </div>
   <div class="row mt-3">
     <div class="col-3">
-      <label class="fz16"><%= radio_button_tag "address_number", 1 %>新しいお届け先</label>
+      <%= f.radio_button "address_number", 1 %>新しいお届け先
       <%#= f.radio_button :address_number, 1 %>
       <%#= f.label :address, "新しいお届け先" %>
     </div>

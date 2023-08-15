@@ -7,6 +7,15 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
+    #オーダーアイテムの保存
+    current_customer.cart_items.each do |cart_item|
+      order_item = OrderItem.new
+      order_item.order_id = @order.id
+      order_item.item_id = cart_item.item_id
+      order_item.amount = cart_item.amount
+      order_item.price = (cart_item.item.price*@order.shipping).to_i
+      order_item.save
+    end
     clear_cart
     redirect_to complete_orders_path
   end
@@ -42,6 +51,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders
+    @cart_items = current_customer.cart_items
   end
 
   def show
