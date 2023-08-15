@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid mb-5">
   <div class="row">
     <h4 class="p-3 mb-2 mt-5 col-4 text-center">
       <span class="bg-body-secondary"><b>&nbsp;&nbsp;&nbsp;マイページ&nbsp;&nbsp;&nbsp;</b></span>
@@ -59,6 +59,15 @@
     </div>
     <div class="col-3 me-5">
       <%= link_to "一覧を見る", deliveries_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+
+  <div class="row ms-4 mt-4">
+    <div class="col-2">
+      <h3>注文履歴</h3>
+    </div>
+    <div class="col-3 me-5">
+      <%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %>
     </div>
   </div>
 

@@ -52,7 +52,45 @@
             </div>
           </div>
         </div>
-      <% else %>
+      <% elsif admin_signed_in? %>
+      <div class="container-fluid">
+          <div class="row">
+            <div class="col mt-5">
+            <ul class="nav">
+              <li class="nav-item">
+                  <button type="button" class="btn btn-outline-secondary">
+                    <h2><%= link_to "Logo", root_path, style: "text-decoration: none;", style: "color:black;" %></h2>
+                  </button>
+              </li>
+            </ul>
+            </div>
+            <div class="col mt-3">
+            <ul class="nav justify-content-end">
+              <li class="me-5 nav-item">
+                <button type="button" class="btn btn-outline-secondary">
+                  <%= link_to "商品一覧", admin_items_path, style: "text-decoration: none;", style: "color:black;" %>
+              　</button>
+              </li>
+              <li class="me-5 nav-item">
+                <button type="button" class="btn btn-outline-secondary">
+                  <%= link_to "会員一覧", admin_customers_path, style: "text-decoration: none;", style: "color:black;" %>
+                </button>
+              </li>
+              <li class="me-5 nav-item">
+                <button type="button" class="btn btn-outline-secondary">
+                  <%= link_to "注文履歴一覧", admin_top_path, style: "text-decoration: none;", style: "color:black;" %>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button type="button" class="btn btn-outline-secondary">
+                  <%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, style: "text-decoration: none;", style: "color:black;" %>
+                </button>
+              </li>
+            </ul>
+            </div>
+          </div>
+        </div>
+        <% else %>
       　<div class="container-fluid">
           <div class="row">
             <div class="col mt-5">
@@ -91,6 +129,7 @@
           </div>
         </div>
       <% end %>
+
     </header>
     <main>
       <%= yield %>
