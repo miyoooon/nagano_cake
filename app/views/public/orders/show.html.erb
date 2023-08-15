@@ -1,2 +1,76 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container">
+  <div class="row">
+  <div class="col-8">
+    <h4 class="p-3 mb-2 mt-5 ms-5 col">
+      <span class="bg-body-secondary"><b>&nbsp;&nbsp;&nbsp;注文履歴詳細&nbsp;&nbsp;&nbsp;</b></span>
+    </h4>
+  </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-7">
+      <h6><b>注文情報</b></h6>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th class="table-secondary">注文日</th>
+            <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+          </tr>
+          <tr>
+            <th class="table-secondary">配送先</th>
+            <td>〒<%= @order.postal_code %><br><%= @order.address %><br><%= @order.name %></td>
+          </tr>
+          <tr>
+            <th class="table-secondary">支払方法</th>
+            <td><%= @order.payment_status %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4 ms-1">
+      <h6><b>請求情報</b></h6>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th class="table-secondary">商品合計</th>
+            <td><%= @order.total_payment %></td>
+          </tr>
+          <tr>
+            <th class="table-secondary">配送料</th>
+            <td><%= @order.shipping %></td>
+          </tr>
+          <tr>
+            <th class="table-secondary">ご請求額</th>
+            <td><%= (@order.total_payment+@order.shipping) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-9">
+      <h6><b>注文情報</b></h6>
+      <table class="table table-bordered">
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col">商品</th>
+            <th scope="col">単価(税込)</th>
+            <th scope="col">個数</th>
+            <th scope="col">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_items.each do |order_item| %>
+          <tr>
+            <td><%= order_item.item.name %></td>
+            <td><%= (order_item.item.price*1.08).to_i %></td>
+            <td><%= order_item.amount %></td>
+            <td><%= (order_item.item.price*1.08*order_item.amount).to_i %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
