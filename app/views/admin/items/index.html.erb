@@ -1,7 +1,21 @@
 <div class="container">
-  <h4 class="p-3 mb-2 ms-5 col">
-  <span class="bg-body-secondary"><b>&nbsp;&nbsp;&nbsp;商品一覧&nbsp;&nbsp;&nbsp;</b></span>
-  </h4>
+  <div class="row">
+    <div class="col-9">
+      <h4 class="p-3 mb-2 ms-5 d-inline-block">
+        <span class="bg-body-secondary me-5"><b>&nbsp;&nbsp;&nbsp;商品一覧&nbsp;&nbsp;&nbsp;</b></span>
+      </h4>
+    </div>
+    <div class="col-2 mt-3">
+      <h4>
+        <span class="col-5 ms-5 ps-5 d-inline-block">
+          <%= link_to new_admin_item_path, class: "text-black" do %>
+            <i class="fa-solid fa-plus"></i>
+          <% end %>
+        </span>
+      </h4>
+    </div>
+  </div>
+
   <div class="row justify-content-center mt-5">
     <div class="col-sm-8">
       <table class="table">

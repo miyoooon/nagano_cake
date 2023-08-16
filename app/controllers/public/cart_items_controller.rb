@@ -1,8 +1,9 @@
 class Public::CartItemsController < ApplicationController
+   before_action :authenticate_customer!, only: [:index, :create, :destroy, :destroy_all, :update]
+
   def index
     @cart_items = CartItem.all
     @cart_item = CartItem.new
-
   end
 
   def create
