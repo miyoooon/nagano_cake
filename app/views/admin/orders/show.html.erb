@@ -1,2 +1,112 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<div class="container">
+  <div class="row">
+  <div class="col-8">
+    <h4 class="p-3 mb-2 mt-5 col">
+      <span class="bg-body-secondary"><b>&nbsp;&nbsp;&nbsp;注文履歴一覧&nbsp;&nbsp;&nbsp;</b></span>
+    </h4>
+  </div>
+  </div>
+</div>
+
+<div class="row ms-5 mt-5">
+  <div class="col-1 me-5 ms-5">
+    <h5 class="d-inline-block ms-4"><b>購入者</b></h5>
+  </div>
+  <div class="col-2 ms-5">
+    <span>
+      <%= link_to admin_customer_path(@order.id), class: "text-black border-bottom" do %>
+        <%= @order.name %>
+      <% end %>
+    </span>
+  </div>
+</div>
+<div class="row ms-5 mt-2">
+  <div class="col-1 me-5 ms-5">
+    <h5 class="d-inline-block ms-4"><b>注文日</b></h5>
+  </div>
+  <div class="col-2 ms-5">
+    <span>
+        <%= @order.created_at.strftime("%Y/%m/%d") %>
+    </span>
+  </div>
+</div>
+<div class="row ms-5 mt-2">
+  <div class="col-1 me-5 ms-5">
+    <h5 class="d-inline-block ms-4"><b>配送先</b></h5>
+  </div>
+  <div class="col-5 ms-5">
+    <span>
+        〒<%= @order.postal_code %><%= @order.address %><br><%= @order.name %>
+    </span>
+  </div>
+</div>
+<div class="row ms-5 mt-2">
+  <div class="col-1 me-5 ms-5">
+    <h5 class="d-inline-block ms-4"><b>支払方法</b></h5>
+  </div>
+  <div class="col-2 ms-5">
+    <span>
+        <%= @order.payment_status %>
+    </span>
+  </div>
+</div>
+
+  <div class="row mt-4 ps-3 ms-5">
+    <div class="col-5 ms-5">
+      <table class="table">
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col">商品</th>
+            <th scope="col">単価(税込)</th>
+            <th scope="col">個数</th>
+            <th scope="col">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%# @orders.each do |order| %>
+          <% @order.order_items.each do |order_item| %>
+          <tr>
+            <td><%= order_item.item.name %></td>
+            <td><%= (order_item.item.price*1.08).to_i %></td>
+            <td><%= order_item.amount %></td>
+            <td><%= (order_item.item.price*1.08*order_item.amount).to_i %></td>
+          </tr>
+          <% end %>
+          <%# end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+    <div class="row ms-5 mt-5">
+      <div class="col-1 me-5 ms-5">
+        <h5 class="d-inline-block ms-4"><b>商品合計</b></h5>
+      </div>
+      <div class="col-2 ms-5">
+        <span>
+          <%= @order.total_payment %>円
+        </span>
+      </div>
+    </div>
+
+    <div class="row ms-5 mt-2">
+      <div class="col-1 me-5 ms-5">
+        <h5 class="d-inline-block ms-4"><b>送料</b></h5>
+      </div>
+      <div class="col-2 ms-5">
+        <span>
+          <%= @order.shipping %>円
+        </span>
+      </div>
+    </div>
+
+    <div class="row ms-5 mt-2">
+      <div class="col-1 me-5 ms-5">
+        <h5 class="d-inline-block ms-4"><b>請求金額合計</b></h5>
+      </div>
+      <div class="col-2 ms-5">
+        <span>
+          <%= @order.total_payment+@order.shipping %>円
+        </span>
+      </div>
+    </div>
