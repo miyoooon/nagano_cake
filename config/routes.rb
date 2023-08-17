@@ -28,8 +28,9 @@ Rails.application.routes.draw do
 
     get '/cart_items' => 'cart_items#index', as: "cart_items"
     patch '/cart_items/:id' => 'cart_items#update', as: "cart_item_update"
-    delete '/cart_items/:id' => 'cart_items#destroy', as: "cart_items_destroy"
     delete '/cart_items/destroy_all' => 'cart_items#destroy_all', as: "cart_items_destroy_all"
+    delete '/cart_items/:id' => 'cart_items#destroy', as: "cart_items_destroy"
+
     post '/cart_items/' => 'cart_items#create', as: "cart_items_create"
 
     get 'deliveries/index'
