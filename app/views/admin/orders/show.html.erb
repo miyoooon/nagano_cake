@@ -2,7 +2,7 @@
   <div class="row">
   <div class="col-8">
     <h4 class="p-3 mb-2 mt-5 col">
-      <span class="bg-body-secondary"><b>&nbsp;&nbsp;&nbsp;注文履歴一覧&nbsp;&nbsp;&nbsp;</b></span>
+      <span class="bg-body-secondary"><b>&nbsp;&nbsp;&nbsp;注文履歴詳細&nbsp;&nbsp;&nbsp;</b></span>
     </h4>
   </div>
   </div>
@@ -14,7 +14,7 @@
   </div>
   <div class="col-2 ms-5">
     <span>
-      <%= link_to admin_customer_path(@order.id), class: "text-black border-bottom" do %>
+      <%= link_to admin_customer_path(@order.customer_id), class: "text-black border-bottom" do %>
         <%= @order.name %>
       <% end %>
     </span>
